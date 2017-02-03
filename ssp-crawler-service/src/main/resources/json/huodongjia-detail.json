@@ -1,0 +1,48 @@
+{
+  "comment" : "活动家详细页信息爬虫",
+  "domainTag" : "huodongjia-detail",
+  "crawlerBaseInfo" :
+  {
+    "baseUrls" : [
+    ],
+    "threadCount" : 1,
+    "refreshRedisWhenStart" : false,
+    "exitWhenComplete" : false
+  },
+
+  "crawlerTrigger" :
+  [
+    {
+      "type" : "simple_once",
+      "value" : true
+    }
+  ],
+
+  "site" :
+  {
+    "charset" : "UTF-8",
+    "timeOut" : 30000
+  },
+
+  "scheduler" : {
+    "hasDetailPage" : true,
+    "detailPageDomainTag" : "huodongjia-parser",
+    "listPageUrlPattern" : "http://www.huodongjia.com/event.*"
+  },
+
+  "pipelines" : [
+    "loggerPipeline"
+  ],
+
+  "downloaders" : [
+    {
+      "urlPattern" : ".*",
+      "downloader": "httpClientDownloader"
+    }
+  ],
+
+  "pageProcessor" : {
+    "preSubProcessor" : ["detailPage"]
+  }
+
+}

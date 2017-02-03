@@ -1,0 +1,48 @@
+{
+  "comment" : "互动吧详细页信息爬虫",
+  "domainTag" : "hudongba-detail",
+  "crawlerBaseInfo" :
+  {
+    "baseUrls" : [
+    ],
+    "threadCount" : 1,
+    "refreshRedisWhenStart" : false,
+    "exitWhenComplete" : false
+  },
+
+  "crawlerTrigger" :
+  [
+    {
+      "type" : "simple_once",
+      "value" : true
+    }
+  ],
+
+  "site" :
+  {
+    "charset" : "UTF-8",
+    "timeOut" : 30000
+  },
+
+  "scheduler" : {
+    "hasDetailPage" : true,
+    "detailPageDomainTag" : "hudongba-parser",
+    "listPageUrlPattern" : "http://www.hdb.com/.*"
+  },
+
+  "pipelines" : [
+    "loggerPipeline"
+  ],
+
+  "downloaders" : [
+    {
+      "urlPattern" : ".*",
+      "downloader": "httpClientDownloader"
+    }
+  ],
+
+  "pageProcessor" : {
+    "preSubProcessor" : ["detailPage"]
+  }
+
+}

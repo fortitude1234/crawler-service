@@ -1,0 +1,48 @@
+{
+  "comment" : "亿欧网爬虫",
+  "domainTag" : "yiou-detail",
+  "crawlerBaseInfo" :
+  {
+    "baseUrls" : [
+    ],
+    "threadCount" : 1,
+    "refreshRedisWhenStart" : false,
+    "exitWhenComplete" : false
+  },
+
+  "crawlerTrigger" :
+  [
+    {
+      "type" : "simple_once",
+      "value" : true
+    }
+  ],
+
+  "site" :
+  {
+    "charset" : "UTF-8",
+    "timeOut" : 30000
+  },
+
+  "scheduler" : {
+    "hasDetailPage" : true,
+    "detailPageDomainTag" : "yiou-parser",
+    "listPageUrlPattern" : "http://www.iyiou.com/i/canyin/.*"
+  },
+
+  "pipelines" : [
+    "loggerPipeline"
+  ],
+
+  "downloaders" : [
+    {
+      "urlPattern" : ".*",
+      "downloader": "httpClientDownloader"
+    }
+  ],
+
+  "pageProcessor" : {
+    "preSubProcessor" : ["detailPage"]
+  }
+
+}

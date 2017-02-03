@@ -1,0 +1,48 @@
+{
+  "comment" : "微信公众号详细页信息爬虫",
+  "domainTag" : "wechat-detail",
+  "crawlerBaseInfo" :
+  {
+    "baseUrls" : [
+    ],
+    "threadCount" : 1,
+    "refreshRedisWhenStart" : false,
+    "exitWhenComplete" : false
+  },
+
+  "crawlerTrigger" :
+  [
+    {
+      "type" : "simple_once",
+      "value" : true
+    }
+  ],
+
+  "site" :
+  {
+    "charset" : "UTF-8",
+    "timeOut" : 30000
+  },
+
+  "scheduler" : {
+    "hasDetailPage" : true,
+    "detailPageDomainTag" : "wechat-parser",
+    "listPageUrlPattern" : "http://mp.weixin.qq.com/s.*"
+  },
+
+  "pipelines" : [
+    "loggerPipeline"
+  ],
+
+  "downloaders" : [
+    {
+      "urlPattern" : ".*",
+      "downloader": "mtDownloader"
+    }
+  ],
+
+  "pageProcessor" : {
+    "preSubProcessor" : ["detailPage"]
+  }
+
+}

@@ -1,0 +1,48 @@
+{
+  "comment" : "58详细页信息爬虫",
+  "domainTag" : "58-detail",
+  "crawlerBaseInfo" :
+  {
+    "baseUrls" : [
+    ],
+    "threadCount" : 1,
+    "refreshRedisWhenStart" : false,
+    "exitWhenComplete" : false
+  },
+
+  "crawlerTrigger" :
+  [
+    {
+      "type" : "simple_once",
+      "value" : true
+    }
+  ],
+
+  "site" :
+  {
+    "charset" : "utf-8",
+    "timeOut" : 30000
+  },
+
+  "scheduler" : {
+    "hasDetailPage" : true,
+    "detailPageDomainTag" : "58-parser",
+    "listPageUrlPattern" : "http.*"
+  },
+
+  "pipelines" : [
+    "loggerPipeline"
+  ],
+
+  "downloaders" : [
+    {
+      "urlPattern" : ".*",
+      "downloader": "mtDownloader"
+    }
+  ],
+
+  "pageProcessor" : {
+    "preSubProcessor" : ["detailPage"]
+  }
+
+}

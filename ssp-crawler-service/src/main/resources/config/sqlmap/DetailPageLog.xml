@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="DetailPageLog">
+
+    <insert id="addLog" parameterClass="map">
+    	INSERT INTO SB_Crawler_Detail_Page_Log
+    	(
+	      url,
+        status,
+        domain_tag,
+        http_code,
+        crawl_time,
+        retry_times,
+        file_path,
+        create_time,
+        updatetime
+    	)
+    	VALUES
+    	(
+    		#entity.url#,
+        #entity.status#,
+        #entity.domainTag#,
+        #entity.httpCode#,
+        #entity.crawlTime#,
+        #entity.retryTimes#,
+        #entity.filePath#,
+        NOW(),
+        NOW()
+    	)
+        <selectKey resultClass="int" keyProperty="id">
+            SELECT @@IDENTITY AS id
+        </selectKey>
+    </insert>
+</sqlMap>
